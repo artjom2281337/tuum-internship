@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.tuum.config.RabbitConfig;
 import com.example.tuum.model.Account;
+import com.example.tuum.model.Transaction;
 
 import java.math.BigDecimal;
 
@@ -18,7 +19,7 @@ public class MessagePublisher {
     private final RabbitTemplate rabbitTemplate;
 
     public record AccountEvent(String eventType, Long account_id, Long customer_id, String country) {}
-    // public record TransactionEvent(String eventType, Long transaction_id, Long account_id, BigDecimal amount, String currency, String direction, String description) {}
+    public record TransactionEvent(String eventType, Long transaction_id, Long account_id, BigDecimal amount, String currency, String direction, String description) {}
     public record BalanceEvent(String eventType, Long account_id, String currency, BigDecimal newBalance) {}
 
     public MessagePublisher(RabbitTemplate rabbitTemplate) {
@@ -36,4 +37,10 @@ public class MessagePublisher {
         logger.info("Publishing BalanceUpdated event, account_id= {} currency= {}", account_id, currency);
         rabbitTemplate.convertAndSend(RabbitConfig.ACCOUNT_QUEUE, event);
     }
+
+    public void publishTransactionCreated(Transaction transaction) {
+        TransactionEvent event = new TransactionEvent("TRANSACTION_CREATED", transaction.getId(),transaction.getAccount_id(),transaction.getAmount(),transaction.getCurrency(),transaction.getDirection().name(),transaction.getDescription());
+        logger.info("Publishing TransactionCreated, transaction_id = {}", transaction.getId());
+        rabbitTemplate.convertAndSend(RabbitConfig.TRANSACTION_QUEUE, event);
+    }   
 }

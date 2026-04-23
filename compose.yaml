@@ -4,9 +4,11 @@ services:
     environment:
       - 'POSTGRES_DB=postgres'
       - 'POSTGRES_PASSWORD=password'
-      - 'POSTGRES_USER=tuum'
+      - 'POSTGRES_USER=postgres'
     ports:
       - '5432:5432'
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
   rabbitmq:
     image: 'rabbitmq:latest'
     environment:

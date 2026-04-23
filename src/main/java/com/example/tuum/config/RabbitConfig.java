@@ -21,6 +21,11 @@ public class RabbitConfig {
         return new Queue(ACCOUNT_QUEUE, true);
     }
 
+    @Bean
+    public Queue transactionQueue() {
+        return new Queue(TRANSACTION_QUEUE);
+    }
+
 
     @Bean
     public MessageConverter jsonMessageConverter() {

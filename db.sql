@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS accounts (
     id BIGSERIAL PRIMARY KEY,
     customer_id BIGINT NOT NULL,
-    country VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS balances (
@@ -19,5 +19,5 @@ CREATE TABLE IF NOT EXISTS transactions (
     currency VARCHAR(3) NOT NULL,
     direction VARCHAR(3) NOT NULL CHECK (direction IN ('IN', 'OUT')),
     description TEXT NOT NULL,
-    balance_after_transaction DECIMAL(19, 4) NOT NULL,
+    balance_after_transaction DECIMAL(19, 4) NOT NULL
 );

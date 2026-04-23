@@ -1,7 +1,6 @@
 package com.example.tuum.mapper;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -19,7 +18,7 @@ public interface BalanceMapper {
     List<Balance> findById(Long account_id);
 
     @Select("select * from balances where account_id#{account_id} and currency=#{currency}")
-    Optional<Balance> findByIdAndCurrency(@Param("account_id") Long account_id, @Param("currency") String currency);
+    Balance findByIdAndCurrency(@Param("account_id") Long account_id, @Param("currency") String currency);
 
     @Insert("insert into balances(account_id, available_amount, currency) values(#{account_id}, #{available_amount}, #{currency})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
