@@ -6,13 +6,13 @@
 
     <resultMap id="AccountWithBalancesResultMap" type="com.example.tuum.model.Account">
         <id property="id" column="account_id"/>
-        <result property="customer_id" column="customer_id"/>
+        <result property="customerId" column="customer_id"/>
         <result property="country" column="country"/>
         
         <collection property="balances" ofType="com.example.tuum.model.Balance">
             <id property="id" column="balance_id"/>
-            <result property="account_id" column="account_id"/>
-            <result property="available_amount" column="available_amount"/>
+            <result property="accountId" column="account_id"/>
+            <result property="availableAmount" column="available_amount"/>
             <result property="currency" column="currency"/>
         </collection>
     </resultMap>

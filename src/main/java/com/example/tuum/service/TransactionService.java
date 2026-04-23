@@ -35,19 +35,19 @@ public class TransactionService {
         this.messagePublisher = messagePublisher;
     }
 
-    public List<TransactionResponse> getTransactionByAccountId(Long account_id) {
-        logger.info("Finding transaction with id: {}", account_id);
-        accountMapper.findById(account_id);
+    public List<TransactionResponse> getTransactionByAccountId(Long accountId) {
+        logger.info("Finding transaction with id: {}", accountId);
+        accountMapper.findById(accountId);
 
-        List<Transaction> transactions = transactionMapper.findByAccountId(account_id);
+        List<Transaction> transactions = transactionMapper.findByAccountId(accountId);
         return transactions.stream().map(TransactionResponse::fromTransaction).collect(Collectors.toList());
     }
 
     @Transactional
     public TransactionResponse createTransaction(CreateTransactionRequest request) {
-        logger.info("creating transaction for account: {}", request.getAccount_id());
+        logger.info("creating transaction for account: {}", request.getAccountId());
 
-        accountMapper.findById(request.getAccount_id());
+        accountMapper.findById(request.getAccountId());
 
         if (!Currency.isValid(request.getCurrency())) {
             System.out.println("currency is not valid");
@@ -64,28 +64,28 @@ public class TransactionService {
             System.out.println("amount invalid");
         }
 
-        Balance balance = balanceMapper.findByIdAndCurrency(request.getAccount_id(),request.getCurrency().toUpperCase());
+        Balance balance = balanceMapper.findByIdAndCurrency(request.getAccountId(),request.getCurrency().toUpperCase());
         BigDecimal newBalance;
         if (direction == TransactionDirection.IN) {
-            newBalance = balance.getAvailabe_amount().add(request.getAmount());
+            newBalance = balance.getAvailabeAmount().add(request.getAmount());
         } else {
-            if (balance.getAvailabe_amount().compareTo(request.getAmount()) < 0) {
+            if (balance.getAvailabeAmount().compareTo(request.getAmount()) < 0) {
                 System.out.println("Insufficient Funds");
             }
-            newBalance = balance.getAvailabe_amount().subtract(request.getAmount());
+            newBalance = balance.getAvailabeAmount().subtract(request.getAmount());
         }
 
-        balance.setAvailabe_amount(newBalance);
+        balance.setAvailabeAmount(newBalance);
         balanceMapper.update(balance);
         logger.info("Balance updated: {} {}", newBalance, request.getCurrency());
 
-        Transaction transaction = new Transaction(request.getAccount_id(), request.getAmount(), request.getCurrency().toUpperCase(), direction, request.getDescription());
-        transaction.setBalance_after_transaction(newBalance);
+        Transaction transaction = new Transaction(request.getAccountId(), request.getAmount(), request.getCurrency().toUpperCase(), direction, request.getDescription());
+        transaction.setBalanceAfterTransaction(newBalance);
         transactionMapper.insert(transaction);
         logger.info("transaction created, id: {}", transaction.getId());
 
         messagePublisher.publishTransactionCreated(transaction);
-        messagePublisher.publishBalanceUpdated(request.getAccount_id(),request.getCurrency().toUpperCase(), newBalance);
+        messagePublisher.publishBalanceUpdated(request.getAccountId(),request.getCurrency().toUpperCase(), newBalance);
 
         return TransactionResponse.fromTransaction(transaction);
     }

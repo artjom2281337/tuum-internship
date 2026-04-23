@@ -14,16 +14,16 @@ import com.example.tuum.model.Balance;
 @Mapper
 public interface BalanceMapper {
 
-    @Select("select * from balances where account_id=#{account_id}")
-    List<Balance> findById(Long account_id);
+    @Select("select * from balances where account_id=#{accountId}")
+    List<Balance> findById(Long accountId);
 
-    @Select("select * from balances where account_id=#{account_id} and currency=#{currency}")
-    Balance findByIdAndCurrency(@Param("account_id") Long account_id, @Param("currency") String currency);
+    @Select("select * from balances where account_id=#{accountId} and currency=#{currency}")
+    Balance findByIdAndCurrency(@Param("account_id") Long accountId, @Param("currency") String currency);
 
-    @Insert("insert into balances(account_id, available_amount, currency) values(#{account_id}, #{available_amount}, #{currency})")
+    @Insert("insert into balances(account_id, available_amount, currency) values(#{accountId}, #{availableAmount}, #{currency})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Balance balance);
 
-    @Update("update balances set available_amount=#{available_amount} where id=#{id}")
+    @Update("update balances set available_amount=#{availableAmount} where id=#{id}")
     void update(Balance balance);
 }

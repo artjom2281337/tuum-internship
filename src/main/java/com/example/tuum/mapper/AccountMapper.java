@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 
 import com.example.tuum.model.Account;
 
@@ -16,8 +17,7 @@ public interface AccountMapper {
 
     Account findByIdWithBalances(Long id);
 
-    @Insert("insert into accounts(customer_id, country) values(#{customer_id}, #{country})")
-    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    @Insert("insert into accounts(customer_id, country) values(#{customerId}, #{country})")
     void insert(Account account);
 
 }

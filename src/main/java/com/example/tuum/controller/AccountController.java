@@ -29,15 +29,15 @@ public class AccountController {
     }
 
     @GetMapping("/{account_id}")
-    public ResponseEntity<AccountResponse> getAccount(@PathVariable Long account_id) {
-        logger.info("Received GetAccount request for id: {}", account_id);
-        AccountResponse response = accountService.getAccount(account_id);
+    public ResponseEntity<AccountResponse> getAccount(@PathVariable Long accountId) {
+        logger.info("Received GetAccount request for id: {}", accountId);
+        AccountResponse response = accountService.getAccount(accountId);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping
     public ResponseEntity<AccountResponse> createAccount(@RequestBody CreateAccountRequest request) {
-        logger.info("Received createAccount request for id: {}", request.getCustomer_id());
+        logger.info("Received createAccount request for id: {}", request.getCustomerId());
         AccountResponse response = accountService.createAccount(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

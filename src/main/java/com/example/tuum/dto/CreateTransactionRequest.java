@@ -7,8 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 public class CreateTransactionRequest {
-    @NotNull(message = "account_id required")
-    private Long account_id;
+    @NotNull(message = "accountId required")
+    private Long accountId;
 
     @NotNull(message = "amount required")
     @Positive(message = "amount must be positive")
@@ -24,16 +24,16 @@ public class CreateTransactionRequest {
     private String description;
 
     public CreateTransactionRequest() {} 
-    public CreateTransactionRequest(Long account_id, BigDecimal amount, String currency, String direction, String description) {
-        this.account_id = account_id;
+    public CreateTransactionRequest(Long accountId, BigDecimal amount, String currency, String direction, String description) {
+        this.accountId = accountId;
         this.amount = amount;
         this.currency = currency;
         this.direction = direction;
         this.description = description;
     }
     
-    public Long getAccount_id() {
-        return account_id;
+    public Long getAccountId() {
+        return accountId;
     }
     public BigDecimal getAmount() {
         return amount;
@@ -47,8 +47,8 @@ public class CreateTransactionRequest {
     public String getDescription() {
         return description;
     }
-    public void setAccount_id(Long account_id) {
-        this.account_id = account_id;
+    public void setAccount_id(Long accountId) {
+        this.accountId = accountId;
     }
     public void setAmount(BigDecimal amount) {
         this.amount = amount;

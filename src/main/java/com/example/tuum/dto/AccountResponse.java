@@ -7,38 +7,38 @@ import com.example.tuum.model.Account;
 
 
 public class AccountResponse {
-    private Long account_id;
-    private Long customer_id;
-    private List<BalanceResponse> balance;
+    private Long accountId;
+    private Long customerId;
+    private List<BalanceResponse> balances;
 
     public AccountResponse() {}
     
     public static AccountResponse fromAccount(Account account) {
         AccountResponse response = new AccountResponse();
-        response.setAccount_id(account.getId());
-        response.setCustomer_id(account.getCustomer_id());
+        response.setAccountId(account.getId());
+        response.setCustomerId(account.getCustomerId());
         if (account.getBalances() != null) {
-            response.setBalance(account.getBalances().stream().map(BalanceResponse::fromBalance).collect(Collectors.toList()));
+            response.setBalances(account.getBalances().stream().map(BalanceResponse::fromBalance).collect(Collectors.toList()));
         }
         return response;
     }
     
-    public Long getAccount_id() {
-        return account_id;
+    public Long getAccountId() {
+        return accountId;
     }
-    public Long getCustomer_id() {
-        return customer_id;
+    public Long getCustomerId() {
+        return customerId;
     }
-    public List<BalanceResponse> getBalance() {
-        return balance;
+    public List<BalanceResponse> getBalances() {
+        return balances;
     }
-    public void setAccount_id(Long account_id) {
-        this.account_id = account_id;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
-    public void setCustomer_id(Long customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
-    public void setBalance(List<BalanceResponse> balance) {
-        this.balance = balance;
+    public void setBalances(List<BalanceResponse> balances) {
+        this.balances = balances;
     }
 }

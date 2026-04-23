@@ -5,19 +5,19 @@ import java.math.BigDecimal;
 import com.example.tuum.model.Transaction;
 
 public class TransactionResponse {
-    private Long account_id;
-    private Long transaction_id;
+    private Long accountId;
+    private Long transactionId;
     private BigDecimal amount;
     private String currency;
     private String direction;
     private String description;
-    private BigDecimal balance_after_transaction;
+    private BigDecimal balanceAfterTransaction;
 
-    public Long getAccount_id() {
-        return account_id;
+    public Long getAccountId() {
+        return accountId;
     }
-    public Long getTransaction_id() {
-        return transaction_id;
+    public Long getTransactionId() {
+        return transactionId;
     }
     public BigDecimal getAmount() {
         return amount;
@@ -31,15 +31,15 @@ public class TransactionResponse {
     public String getDescription() {
         return description;
     }
-    public BigDecimal getBalance_after_transaction() {
-        return balance_after_transaction;
+    public BigDecimal getBalanceAfterTransaction() {
+        return balanceAfterTransaction;
     }
 
-    public void setAccount_id(Long account_id) {
-        this.account_id = account_id;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
-    public void setTransaction_id(Long transaction_id) {
-        this.transaction_id = transaction_id;
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
     }
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
@@ -53,8 +53,8 @@ public class TransactionResponse {
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setBalance_after_transaction(BigDecimal balance_after_transaction) {
-        this.balance_after_transaction = balance_after_transaction;
+    public void setBalanceAfterTransaction(BigDecimal balanceAfterTransaction) {
+        this.balanceAfterTransaction = balanceAfterTransaction;
     }
 
 
@@ -62,13 +62,13 @@ public class TransactionResponse {
     public TransactionResponse() {}
     public static TransactionResponse fromTransaction(Transaction transaction) {
         TransactionResponse response = new TransactionResponse();
-        response.setAccount_id(transaction.getAccount_id());
-        response.setTransaction_id(transaction.getId());
+        response.setAccountId(transaction.getAccountId());
+        response.setTransactionId(transaction.getId());
         response.setAmount(transaction.getAmount());
         response.setCurrency(transaction.getCurrency());
         response.setDirection(transaction.getDirection().name());
         response.setDescription(transaction.getDescription());
-        response.setBalance_after_transaction(transaction.getBalance_after_transaction());
+        response.setBalanceAfterTransaction(transaction.getBalanceAfterTransaction());
         return response;
     }
 }

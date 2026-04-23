@@ -5,16 +5,16 @@ import java.math.BigDecimal;
 
 public class Transaction {
     private Long id;
-    private Long account_id;
+    private Long accountId;
     private BigDecimal amount;
     private String currency;
     private TransactionDirection direction;
     private String description;
-    private BigDecimal balance_after_transaction;
+    private BigDecimal balanceAfterTransaction;
 
     public Transaction() {}
-    public Transaction(Long account_id, BigDecimal amount, String currency, TransactionDirection direction, String description) {
-        this.account_id = account_id;
+    public Transaction(Long accountId, BigDecimal amount, String currency, TransactionDirection direction, String description) {
+        this.accountId = accountId;
         this.amount = amount;
         this.currency = currency;
         this.direction = direction;
@@ -24,8 +24,8 @@ public class Transaction {
     public Long getId() {
         return id;
     }
-    public Long getAccount_id() {
-        return account_id;
+    public Long getAccountId() {
+        return accountId;
     }
     public BigDecimal getAmount() {
         return amount;
@@ -39,15 +39,15 @@ public class Transaction {
     public String getDescription() {
         return description;
     }
-    public BigDecimal getBalance_after_transaction() {
-        return balance_after_transaction;
+    public BigDecimal getBalanceAfterTransaction() {
+        return balanceAfterTransaction;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-    public void setAccount_id(Long account_id) {
-        this.account_id = account_id;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
@@ -61,12 +61,12 @@ public class Transaction {
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setBalance_after_transaction(BigDecimal balance_after_transaction) {
-        this.balance_after_transaction = balance_after_transaction;
+    public void setBalanceAfterTransaction(BigDecimal balanceAfterTransaction) {
+        this.balanceAfterTransaction = balanceAfterTransaction;
     }
 
     @Override
     public String toString() {
-        return "Transaction{" + "id=" + id + ", account_id=" + account_id + ", amount=" + amount + ", currency='" + currency + '\'' + ", direction=" + direction + ", description='" + description + '\'' + ", balance_after_transaction=" + balance_after_transaction + '}';
+        return "Transaction{" + "id=" + id + ", accountId=" + accountId + ", amount=" + amount + ", currency='" + currency + '\'' + ", direction=" + direction + ", description='" + description + '\'' + ", balanceAfterTransaction=" + balanceAfterTransaction + '}';
     }
 }

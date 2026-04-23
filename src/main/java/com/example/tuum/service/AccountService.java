@@ -31,10 +31,10 @@ public class AccountService {
         this.messagePublisher = messagePublisher;
     }
 
-    public AccountResponse getAccount(Long account_id) {
-        logger.info("Finding account with id: {}", account_id);
+    public AccountResponse getAccount(Long accountId) {
+        logger.info("Finding account with id: {}", accountId);
 
-        Account account = accountMapper.findByIdWithBalances(account_id);
+        Account account = accountMapper.findByIdWithBalances(accountId);
 
         return AccountResponse.fromAccount(account);
     }
@@ -44,7 +44,7 @@ public class AccountService {
 
     @Transactional
     public AccountResponse createAccount(CreateAccountRequest request) {
-        logger.info("creating account for customer: {}", request.getCustomer_id());
+        logger.info("creating account for customer: {}", request.getCustomerId());
 
         for (String currencyCode : request.getCurrencies()) {
             if (!Currency.isValid(currencyCode)) {
@@ -52,7 +52,7 @@ public class AccountService {
             }
         }
 
-        Account account = new Account(request.getCustomer_id(), request.getCountry());
+        Account account = new Account(request.getCustomerId(), request.getCountry());
         accountMapper.insert(account);
         logger.info("Account created with id: {}", account.getId());
 

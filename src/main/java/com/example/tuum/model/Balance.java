@@ -4,25 +4,25 @@ import java.math.BigDecimal;
 
 public class Balance {
     private Long id;
-    private Long account_id;
-    private BigDecimal availabe_amount;
+    private Long accountId;
+    private BigDecimal availabeAmount;
     private String currency;
 
     public Balance() {}
-    public Balance(Long account_id, BigDecimal available_amount, String currency) {
-        this.account_id = account_id;
-        this.availabe_amount = available_amount;
+    public Balance(Long accountId, BigDecimal availableAmount, String currency) {
+        this.accountId = accountId;
+        this.availabeAmount = availableAmount;
         this.currency = currency;
     }
 
     public Long getId() {
         return id;
     }
-    public Long getAccount_Id() {
-        return account_id;
+    public Long getAccountId() {
+        return accountId;
     }
-    public BigDecimal getAvailabe_amount() {
-        return availabe_amount;
+    public BigDecimal getAvailabeAmount() {
+        return availabeAmount;
     }
     public String getCurrency() {
         return currency;
@@ -30,11 +30,11 @@ public class Balance {
     public void setId(Long id) {
         this.id = id;
     }
-    public void setAccount_Id(Long account_id) {
-        this.account_id = account_id;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
-    public void setAvailabe_amount(BigDecimal availabe_amount) {
-        this.availabe_amount = availabe_amount;
+    public void setAvailabeAmount(BigDecimal availabeAmount) {
+        this.availabeAmount = availabeAmount;
     }
     public void setCurrency(String currency) {
         this.currency = currency;
@@ -42,6 +42,6 @@ public class Balance {
 
     @Override
     public String toString() {
-        return "Balance{" + "id=" + id + ", account_id=" + account_id + ", available_amount=" + availabe_amount + ", currency='" + currency +'\'' + '}';
+        return "Balance{" + "id=" + id + ", accountId=" + accountId + ", availableAmount=" + availabeAmount + ", currency='" + currency +'\'' + '}';
     }
 }

@@ -31,15 +31,15 @@ public class TransactionController {
     }
 
     @GetMapping("/{account_id}")
-    public ResponseEntity<List<TransactionResponse>> getTransactions(@PathVariable Long account_id) {
-        logger.info("received getTransactions request for account: {}", account_id);
-        List<TransactionResponse> transactions = transactionService.getTransactionByAccountId(account_id);
+    public ResponseEntity<List<TransactionResponse>> getTransactions(@PathVariable Long accountId) {
+        logger.info("received getTransactions request for account: {}", accountId);
+        List<TransactionResponse> transactions = transactionService.getTransactionByAccountId(accountId);
         return ResponseEntity.ok(transactions);
     }
 
     @PostMapping
     public ResponseEntity<TransactionResponse> createTransaction(@RequestBody CreateTransactionRequest request) {
-        logger.info("received createTransaction request for account: {}", request.getAccount_id());
+        logger.info("received createTransaction request for account: {}", request.getAccountId());
         TransactionResponse response = transactionService.createTransaction(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
