@@ -14,10 +14,10 @@ import com.example.tuum.model.Balance;
 @Mapper
 public interface BalanceMapper {
 
-    @Select("select * form balances where account_id=#{account_id}")
+    @Select("select * from balances where account_id=#{account_id}")
     List<Balance> findById(Long account_id);
 
-    @Select("select * from balances where account_id#{account_id} and currency=#{currency}")
+    @Select("select * from balances where account_id=#{account_id} and currency=#{currency}")
     Balance findByIdAndCurrency(@Param("account_id") Long account_id, @Param("currency") String currency);
 
     @Insert("insert into balances(account_id, available_amount, currency) values(#{account_id}, #{available_amount}, #{currency})")

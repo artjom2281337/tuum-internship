@@ -17,8 +17,8 @@ public class AccountResponse {
         AccountResponse response = new AccountResponse();
         response.setAccount_id(account.getId());
         response.setCustomer_id(account.getCustomer_id());
-        if (account.getBalance() != null) {
-            response.setBalance(account.getBalance().stream().map(BalanceResponse::fromBalance).collect(Collectors.toList()));
+        if (account.getBalances() != null) {
+            response.setBalance(account.getBalances().stream().map(BalanceResponse::fromBalance).collect(Collectors.toList()));
         }
         return response;
     }

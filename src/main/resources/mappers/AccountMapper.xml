@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.tuum.mapper.AccountMapper">
+
+    <resultMap id="AccountWithBalancesResultMap" type="com.example.tuum.model.Account">
+        <id property="id" column="account_id"/>
+        <result property="customer_id" column="customer_id"/>
+        <result property="country" column="country"/>
+        
+        <collection property="balances" ofType="com.example.tuum.model.Balance">
+            <id property="id" column="balance_id"/>
+            <result property="account_id" column="account_id"/>
+            <result property="available_amount" column="available_amount"/>
+            <result property="currency" column="currency"/>
+        </collection>
+    </resultMap>
+
+    <select id="findByIdWithBalances" resultMap="AccountWithBalancesResultMap">
+        SELECT 
+            a.id AS account_id,
+            a.customer_id,
+            a.country,
+            b.id AS balance_id,
+            b.available_amount,
+            b.currency
+        FROM accounts a
+        LEFT JOIN balances b ON a.id = b.account_id
+        WHERE a.id = #{id}
+    </select>
+
+</mapper>

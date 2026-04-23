@@ -14,16 +14,10 @@ public interface AccountMapper {
     @Select("select * from accounts where id=#{id}")
     Optional<Account> findById(Long id);
 
-    @Select("""
-            select a.id as account_id, a.customer_id, a.country, b.id as balance_id, b.available_amount, b.currency
-            from accounts a
-            left join balances b on a.id = b.account_id
-            where a.id=${id}
-            """)
     Account findByIdWithBalances(Long id);
 
     @Insert("insert into accounts(customer_id, country) values(#{customer_id}, #{country})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     void insert(Account account);
 
 }
