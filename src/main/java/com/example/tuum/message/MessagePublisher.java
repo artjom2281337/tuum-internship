@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.tuum.config.RabbitConfig;
 import com.example.tuum.model.Account;
-import com.example.tuum.model.Balance;
 
 import java.math.BigDecimal;
 
@@ -19,7 +18,7 @@ public class MessagePublisher {
     private final RabbitTemplate rabbitTemplate;
 
     public record AccountEvent(String eventType, Long account_id, Long customer_id, String country) {}
-    public record TransactionEvent(String eventType, Long transaction_id, Long account_id, BigDecimal amount, String currency, String direction, String description) {}
+    // public record TransactionEvent(String eventType, Long transaction_id, Long account_id, BigDecimal amount, String currency, String direction, String description) {}
     public record BalanceEvent(String eventType, Long account_id, String currency, BigDecimal newBalance) {}
 
     public MessagePublisher(RabbitTemplate rabbitTemplate) {
